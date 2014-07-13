@@ -1,7 +1,7 @@
 {
   "name": "geonames-reader",
   "version": "0.0.1",
-  "description": "A utility for importing geonames data.",
+  "description": "An async-friendly streaming parser for geonames data.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test -R list"
@@ -15,7 +15,9 @@
     "geoname",
     "geo",
     "gis",
-    "mapping"
+    "mapping",
+    "parser",
+    "streaming"
   ],
   "author": {
     "name": "Brian Reavis",

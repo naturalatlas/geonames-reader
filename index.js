@@ -42,7 +42,7 @@ geonames.read = function() {
 
 	done = done || function() {};
 	type = type || geonames.guessType(file);
-	formatter = formatters[format];
+	formatter = formatters[type];
 
 	if (!formatter) {
 		return done('Unrecognized geonames file. Available formats: ' + Object.keys(formatters).join(', '));
