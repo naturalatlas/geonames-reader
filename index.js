@@ -45,7 +45,7 @@ geonames.read = function() {
 	formatter = formatters[type];
 
 	if (!formatter) {
-		return done('Unrecognized geonames file. Available formats: ' + Object.keys(formatters).join(', '));
+		return done('Unrecognized geonames file. Available types: ' + Object.keys(formatters).join(', '));
 	}
 
 	fs.exists(file, function(exists) {
