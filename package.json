@@ -1,0 +1,46 @@
+{
+  "name": "geonames-reader",
+  "version": "0.0.1",
+  "description": "A utility for importing geonames data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test -R list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naturalatlas/geonames-reader.git"
+  },
+  "keywords": [
+    "geonames",
+    "geoname",
+    "geo",
+    "gis",
+    "mapping"
+  ],
+  "author": {
+    "name": "Brian Reavis",
+    "url": "https://github.com/brianreavis",
+    "email": "brian@naturalatlas.com"
+  },
+  "licenses": [
+    {
+      "type": "Apache License, Version 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/naturalatlas/geonames-reader/issues"
+  },
+  "homepage": "https://github.com/naturalatlas/geonames-reader",
+  "dependencies": {
+    "through2": "^0.5.1",
+    "binary-csv": "^0.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.20.1",
+    "chai": "^1.9.1"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
