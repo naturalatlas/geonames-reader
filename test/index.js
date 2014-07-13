@@ -23,7 +23,11 @@ describe('geonames.read()', function() {
 
 	it('should handle administrative code files', function(done) {
 		var data_actual = [];
-		var data_expected = [{"path":"US.WY","geoname_id":5843591,"name":"Wyoming","asciiname":"Wyoming"},{"path":"US.HI","geoname_id":5855797,"name":"Hawaii","asciiname":"Hawaii"}];
+		var data_expected = [
+			{"path":"US.WY","geoname_id":5843591,"name":"Wyoming","asciiname":"Wyoming"},
+			{"path":"US.HI","geoname_id":5855797,"name":"Hawaii","asciiname":"Hawaii"},
+			{"path":"US.AK","geoname_id":5879092,"name":"Alaska","asciiname":"Alaska"},
+		];
 		geonames.read(__dirname + '/fixtures/adminCodes.csv', function(line, callback) {
 			data_actual.push(line);
 			callback();
