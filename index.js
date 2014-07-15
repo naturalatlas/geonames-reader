@@ -87,5 +87,8 @@ geonames.guessType = function(file) {
 	if (/^timeZones/i.test(filename)) {
 		return 'timezones';
 	}
+	if (/^hierarchy/i.test(filename)) {
+		return 'hierarchy';
+	}
 	return null;
 };

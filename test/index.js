@@ -112,10 +112,36 @@ describe('geonames.read()', function() {
 			data_actual.push(line);
 			callback();
 		}, function(err) {
-			var fs = require('fs');
 			assert.equal(err, null);
 			assert.lengthOf(data_actual, 418);
 			assert.deepEqual(data_actual.slice(0, 19), data_expected);
+			done();
+		});
+	});
+	it('should handle hierarchy files', function(done) {
+		var data_actual = [];
+		var data_expected = [
+			{"parent_id": 6295630, "child_id": 6255146, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255152, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255147, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255148, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255149, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255151, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255150, "type":	"ADM"},
+			{"parent_id": 6255148, "child_id": 3041565, "type":	"ADM"},
+			{"parent_id": 6255147, "child_id": 290557, "type": "ADM"},
+			{"parent_id": 6255147, "child_id": 1149361, "type":	"ADM"},
+			{"parent_id": 6255149, "child_id": 3576396, "type":	"ADM"},
+			{"parent_id": 6255149, "child_id": 3573511, "type":	"ADM"},
+			{"parent_id": 6255148, "child_id": 783754, "type": "ADM"},
+			{"parent_id": 6255147, "child_id": 174982, "type": "ADM"}
+		];
+		geonames.read(__dirname + '/fixtures/hierarchy.csv', function(line, callback) {
+			data_actual.push(line);
+			callback();
+		}, function(err) {
+			assert.equal(err, null);
+			assert.deepEqual(data_actual, data_expected);
 			done();
 		});
 	});
@@ -152,5 +178,9 @@ describe('geonames.guessType()', function() {
 	it('should recognize "timezones"', function() {
 		assert.equal(geonames.guessType('path/timeZones.txt'), 'timezones');
 		assert.equal(geonames.guessType('path/timeZones.csv'), 'timezones');
+	});
+	it('should recognize "hierarchy"', function() {
+		assert.equal(geonames.guessType('path/hierarchy.txt'), 'hierarchy');
+		assert.equal(geonames.guessType('path/hierarchy.csv'), 'hierarchy');
 	});
 });
