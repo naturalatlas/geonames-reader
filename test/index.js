@@ -85,6 +85,40 @@ describe('geonames.read()', function() {
 			done();
 		});
 	});
+	it('should handle timezone files', function(done) {
+		var data_actual = [];
+		var data_expected = [
+			{"name":"Africa/Abidjan","country_code":"CI","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Accra","country_code":"GH","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Addis_Ababa","country_code":"ET","gmt_offset":3,"dst_offset":3,"raw_offset":3},
+			{"name":"Africa/Algiers","country_code":"DZ","gmt_offset":1,"dst_offset":1,"raw_offset":1},
+			{"name":"Africa/Asmara","country_code":"ER","gmt_offset":3,"dst_offset":3,"raw_offset":3},
+			{"name":"Africa/Bamako","country_code":"ML","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Bangui","country_code":"CF","gmt_offset":1,"dst_offset":1,"raw_offset":1},
+			{"name":"Africa/Banjul","country_code":"GM","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Bissau","country_code":"GW","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Blantyre","country_code":"MW","gmt_offset":2,"dst_offset":2,"raw_offset":2},
+			{"name":"Africa/Brazzaville","country_code":"CG","gmt_offset":1,"dst_offset":1,"raw_offset":1},
+			{"name":"Africa/Bujumbura","country_code":"BI","gmt_offset":2,"dst_offset":2,"raw_offset":2},
+			{"name":"Africa/Cairo","country_code":"EG","gmt_offset":2,"dst_offset":2,"raw_offset":2},
+			{"name":"Africa/Casablanca","country_code":"MA","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Ceuta","country_code":"ES","gmt_offset":1,"dst_offset":2,"raw_offset":1},
+			{"name":"Africa/Conakry","country_code":"GN","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Dakar","country_code":"SN","gmt_offset":0,"dst_offset":0,"raw_offset":0},
+			{"name":"Africa/Dar_es_Salaam","country_code":"TZ","gmt_offset":3,"dst_offset":3,"raw_offset":3},
+			{"name":"Africa/Djibouti","country_code":"DJ","gmt_offset":3,"dst_offset":3,"raw_offset":3}
+		];
+		geonames.read(__dirname + '/fixtures/timeZones.csv', function(line, callback) {
+			data_actual.push(line);
+			callback();
+		}, function(err) {
+			var fs = require('fs');
+			assert.equal(err, null);
+			assert.lengthOf(data_actual, 418);
+			assert.deepEqual(data_actual.slice(0, 19), data_expected);
+			done();
+		});
+	});
 });
 
 describe('geonames.guessType()', function() {
@@ -114,5 +148,9 @@ describe('geonames.guessType()', function() {
 		assert.equal(geonames.guessType('path/cities5000.csv'), 'geonames');
 		assert.equal(geonames.guessType('path/cities15000.txt'), 'geonames');
 		assert.equal(geonames.guessType('path/cities15000.csv'), 'geonames');
+	});
+	it('should recognize "timezones"', function() {
+		assert.equal(geonames.guessType('path/timeZones.txt'), 'timezones');
+		assert.equal(geonames.guessType('path/timeZones.csv'), 'timezones');
 	});
 });

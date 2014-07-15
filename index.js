@@ -51,9 +51,18 @@ geonames.read = function() {
 	fs.exists(file, function(exists) {
 		if (!exists) return done('File does not exist');
 		var stream = fs.createReadStream(file);
-		return reader.read(stream, function(item, callback) {
+		var handler = function(item, callback) {
 			item_callback(formatter(item), callback);
-		}, done);
+		};
+
+		if (type === 'timezones') {
+			handler = function(item, callback) {
+				if (item[0] === 'CountryCode') return callback();
+				item_callback(formatter(item), callback);
+			};
+		}
+
+		return reader.read(stream, handler, done);
 	});
 };
 
@@ -66,14 +75,17 @@ geonames.read = function() {
  */
 geonames.guessType = function(file) {
 	var filename = path.basename(file);
-	if (/^(cities|[A-Z]{2}\.|allCountries)/.test(filename)) {
+	if (/^(cities|[A-Z]{2}\.|allCountries)/i.test(filename)) {
 		return 'geonames';
 	}
-	if (/^admin/.test(filename)) {
+	if (/^admin/i.test(filename)) {
 		return 'admin_codes';
 	}
-	if (/^alternateNames/.test(filename)) {
+	if (/^alternateNames/i.test(filename)) {
 		return 'alternate_names';
+	}
+	if (/^timeZones/i.test(filename)) {
+		return 'timezones';
 	}
 	return null;
 };
