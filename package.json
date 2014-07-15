@@ -1,6 +1,6 @@
 {
   "name": "geonames-reader",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An async-friendly streaming parser for geonames data.",
   "main": "index.js",
   "scripts": {
