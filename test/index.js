@@ -20,6 +20,18 @@ describe('geonames.read()', function() {
 			done();
 		});
 	});
+	it('should not fire callback until complete', function(done) {
+		var count_actual = 0;
+		var count_expected = 11;
+		geonames.read(__dirname + '/fixtures/countryInfo.csv', function(line, callback) {
+			count_actual++;
+			setTimeout(callback, 100);
+		}, function(err) {
+			assert.equal(err, null);
+			assert.equal(count_actual, count_expected);
+			done();
+		});
+	});
 
 	it('should handle administrative code files', function(done) {
 		var data_actual = [];
