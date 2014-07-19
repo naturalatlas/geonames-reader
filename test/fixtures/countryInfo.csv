@@ -1,0 +1,62 @@
+# GeoNames.org Country Information
+# ================================
+#
+#
+# CountryCodes:
+# ============
+#
+# The official ISO country code for the United Kingdom is 'GB'. The code 'UK' is reserved.
+#
+# A list of dependent countries is available here:
+# https://spreadsheets.google.com/ccc?key=pJpyPy-J5JSNhe7F_KxwiCA&hl=en
+#
+#
+# The countrycode XK temporarily stands for Kosvo:
+# http://geonames.wordpress.com/2010/03/08/xk-country-code-for-kosovo/
+#
+#
+# CS (Serbia and Montenegro) with geonameId = 863038 no longer exists.
+# AN (the Netherlands Antilles) with geonameId = 3513447  was dissolved on 10 October 2010.
+#
+#
+# Currencies :
+# ============
+#
+# A number of territories are not included in ISO 4217, because their currencies are not per se an independent currency,
+# but a variant of another currency. These currencies are:
+#
+# 1. FO : Faroese krona (1:1 pegged to the Danish krone)
+# 2. GG : Guernsey pound (1:1 pegged to the pound sterling)
+# 3. JE : Jersey pound (1:1 pegged to the pound sterling)
+# 4. IM : Isle of Man pound (1:1 pegged to the pound sterling)
+# 5. TV : Tuvaluan dollar (1:1 pegged to the Australian dollar).
+# 6. CK : Cook Islands dollar (1:1 pegged to the New Zealand dollar).
+#
+# The following non-ISO codes are, however, sometimes used: GGP for the Guernsey pound,
+# JEP for the Jersey pound and IMP for the Isle of Man pound (http://en.wikipedia.org/wiki/ISO_4217)
+#
+#
+# A list of currency symbols is available here : http://forum.geonames.org/gforum/posts/list/437.page
+# another list with fractional units is here: http://forum.geonames.org/gforum/posts/list/1961.page
+#
+#
+# Languages :
+# ===========
+#
+# The column 'languages' lists the languages spoken in a country ordered by the number of speakers. The language code is a 'locale'
+# where any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
+#
+# Example : es-AR is the Spanish variant spoken in Argentina.
+#
+#ISO	ISO3	ISO-Numeric	fips	Country	Capital	Area(in sq km)	Population	Continent	tld	CurrencyCode	CurrencyName	Phone	Postal Code Format	Postal Code Regex	Languages	geonameid	neighbours	EquivalentFipsCode
+AD	AND	020	AN	Andorra	Andorra la Vella	468	84000	EU	.ad	EUR	Euro	376	AD###	^(?:AD)*(\d{3})$	ca	3041565	ES,FR
+AE	ARE	784	AE	United Arab Emirates	Abu Dhabi	82880	4975593	AS	.ae	AED	Dirham	971			ar-AE,fa,en,hi,ur	290557	SA,OM
+AF	AFG	004	AF	Afghanistan	Kabul	647500	29121286	AS	.af	AFN	Afghani	93			fa-AF,ps,uz-AF,tk	1149361	TM,CN,IR,TJ,PK,UZ
+AG	ATG	028	AC	Antigua and Barbuda	St. John's	443	86754	NA	.ag	XCD	Dollar	+1-268			en-AG	3576396
+AI	AIA	660	AV	Anguilla	The Valley	102	13254	NA	.ai	XCD	Dollar	+1-264			en-AI	3573511
+AL	ALB	008	AL	Albania	Tirana	28748	2986952	EU	.al	ALL	Lek	355			sq,el	783754	MK,GR,CS,ME,RS,XK
+AM	ARM	051	AM	Armenia	Yerevan	29800	2968000	AS	.am	AMD	Dram	374	######	^(\d{6})$	hy	174982	GE,IR,AZ,TR
+AO	AGO	024	AO	Angola	Luanda	1246700	13068161	AF	.ao	AOA	Kwanza	244			pt-AO	3351879	CD,NA,ZM,CG
+AQ	ATA	010	AY	Antarctica		14000000	0	AN	.aq							6697173
+AR	ARG	032	AR	Argentina	Buenos Aires	2766890	41343201	SA	.ar	ARS	Peso	54	@####@@@	^([A-Z]\d{4}[A-Z]{3})$	es-AR,en,it,de,fr,gn	3865483	CL,BO,UY,PY,BR
+AS	ASM	016	AQ	American Samoa	Pago Pago	199	57881	OC	.as	USD	Dollar	+1-684			en-AS,sm,to	5880801

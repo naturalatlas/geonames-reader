@@ -121,22 +121,46 @@ describe('geonames.read()', function() {
 	it('should handle hierarchy files', function(done) {
 		var data_actual = [];
 		var data_expected = [
-			{"parent_id": 6295630, "child_id": 6255146, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255152, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255147, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255148, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255149, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255151, "type":	"ADM"},
-			{"parent_id": 6295630, "child_id": 6255150, "type":	"ADM"},
-			{"parent_id": 6255148, "child_id": 3041565, "type":	"ADM"},
+			{"parent_id": 6295630, "child_id": 6255146, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255152, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255147, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255148, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255149, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255151, "type": "ADM"},
+			{"parent_id": 6295630, "child_id": 6255150, "type": "ADM"},
+			{"parent_id": 6255148, "child_id": 3041565, "type": "ADM"},
 			{"parent_id": 6255147, "child_id": 290557, "type": "ADM"},
-			{"parent_id": 6255147, "child_id": 1149361, "type":	"ADM"},
-			{"parent_id": 6255149, "child_id": 3576396, "type":	"ADM"},
-			{"parent_id": 6255149, "child_id": 3573511, "type":	"ADM"},
+			{"parent_id": 6255147, "child_id": 1149361, "type": "ADM"},
+			{"parent_id": 6255149, "child_id": 3576396, "type": "ADM"},
+			{"parent_id": 6255149, "child_id": 3573511, "type": "ADM"},
 			{"parent_id": 6255148, "child_id": 783754, "type": "ADM"},
 			{"parent_id": 6255147, "child_id": 174982, "type": "ADM"}
 		];
 		geonames.read(__dirname + '/fixtures/hierarchy.csv', function(line, callback) {
+			data_actual.push(line);
+			callback();
+		}, function(err) {
+			assert.equal(err, null);
+			assert.deepEqual(data_actual, data_expected);
+			done();
+		});
+	});
+	it('should handle countries files', function(done) {
+		var data_actual = [];
+		var data_expected = [
+			{"iso":"AD","iso3":"AND","iso_numeric":20,"fips":"AN","name":"Andorra","capital":"Andorra la Vella","area":468,"population":84000,"continent":"EU","tld":".ad","currency_code":"EUR","currency_name":"Euro","phone":"376","postal_code_format":"AD###"},
+			{"iso":"AE","iso3":"ARE","iso_numeric":784,"fips":"AE","name":"United Arab Emirates","capital":"Abu Dhabi","area":82880,"population":4975593,"continent":"AS","tld":".ae","currency_code":"AED","currency_name":"Dirham","phone":"971","postal_code_format":""},
+			{"iso":"AF","iso3":"AFG","iso_numeric":4,"fips":"AF","name":"Afghanistan","capital":"Kabul","area":647500,"population":29121286,"continent":"AS","tld":".af","currency_code":"AFN","currency_name":"Afghani","phone":"93","postal_code_format":""},
+			{"iso":"AG","iso3":"ATG","iso_numeric":28,"fips":"AC","name":"Antigua and Barbuda","capital":"St. John's","area":443,"population":86754,"continent":"NA","tld":".ag","currency_code":"XCD","currency_name":"Dollar","phone":"+1-268","postal_code_format":""},
+			{"iso":"AI","iso3":"AIA","iso_numeric":660,"fips":"AV","name":"Anguilla","capital":"The Valley","area":102,"population":13254,"continent":"NA","tld":".ai","currency_code":"XCD","currency_name":"Dollar","phone":"+1-264","postal_code_format":""},
+			{"iso":"AL","iso3":"ALB","iso_numeric":8,"fips":"AL","name":"Albania","capital":"Tirana","area":28748,"population":2986952,"continent":"EU","tld":".al","currency_code":"ALL","currency_name":"Lek","phone":"355","postal_code_format":""},
+			{"iso":"AM","iso3":"ARM","iso_numeric":51,"fips":"AM","name":"Armenia","capital":"Yerevan","area":29800,"population":2968000,"continent":"AS","tld":".am","currency_code":"AMD","currency_name":"Dram","phone":"374","postal_code_format":"######"},
+			{"iso":"AO","iso3":"AGO","iso_numeric":24,"fips":"AO","name":"Angola","capital":"Luanda","area":1246700,"population":13068161,"continent":"AF","tld":".ao","currency_code":"AOA","currency_name":"Kwanza","phone":"244","postal_code_format":""},
+			{"iso":"AQ","iso3":"ATA","iso_numeric":10,"fips":"AY","name":"Antarctica","capital":"","area":14000000,"population":0,"continent":"AN","tld":".aq","currency_code":"","currency_name":"","phone":"","postal_code_format":""},
+			{"iso":"AR","iso3":"ARG","iso_numeric":32,"fips":"AR","name":"Argentina","capital":"Buenos Aires","area":2766890,"population":41343201,"continent":"SA","tld":".ar","currency_code":"ARS","currency_name":"Peso","phone":"54","postal_code_format":"@####@@@"},
+			{"iso":"AS","iso3":"ASM","iso_numeric":16,"fips":"AQ","name":"American Samoa","capital":"Pago Pago","area":199,"population":57881,"continent":"OC","tld":".as","currency_code":"USD","currency_name":"Dollar","phone":"+1-684","postal_code_format":""}
+		];
+		geonames.read(__dirname + '/fixtures/countryInfo.csv', function(line, callback) {
 			data_actual.push(line);
 			callback();
 		}, function(err) {
@@ -182,5 +206,9 @@ describe('geonames.guessType()', function() {
 	it('should recognize "hierarchy"', function() {
 		assert.equal(geonames.guessType('path/hierarchy.txt'), 'hierarchy');
 		assert.equal(geonames.guessType('path/hierarchy.csv'), 'hierarchy');
+	});
+	it('should recognize "countries"', function() {
+		assert.equal(geonames.guessType('path/countryInfo.txt'), 'countries');
+		assert.equal(geonames.guessType('path/countryInfo.csv'), 'countries');
 	});
 });

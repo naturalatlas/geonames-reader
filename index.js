@@ -60,6 +60,11 @@ geonames.read = function() {
 				if (item[0] === 'CountryCode') return callback();
 				item_callback(formatter(item), callback);
 			};
+		} else if (type === 'countries') {
+			handler = function(item, callback) {
+				if (item[0][0] === '#') return callback();
+				item_callback(formatter(item), callback);
+			};
 		}
 
 		return reader.read(stream, handler, done);
@@ -89,6 +94,9 @@ geonames.guessType = function(file) {
 	}
 	if (/^hierarchy/i.test(filename)) {
 		return 'hierarchy';
+	}
+	if (/^countryInfo/i.test(filename)) {
+		return 'countries';
 	}
 	return null;
 };
