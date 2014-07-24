@@ -2,6 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/geonames-reader.png)](http://badge.fury.io/js/geonames-reader)
 [![Build Status](https://travis-ci.org/naturalatlas/geonames-reader.png?branch=master)](https://travis-ci.org/naturalatlas/geonames-reader)
+[![Coverage Status](https://coveralls.io/repos/naturalatlas/geonames-reader/badge.png)](https://coveralls.io/r/naturalatlas/geonames-reader)
 
 An async-friendly streaming parser for [geonames data](http://download.geonames.org/export/dump/). It supports the following types of files: "geonames" (features/cities), "adminCodes", "alternateNames", "hierarchy", "countryInfo", and "timeZones". The parser spits out objects with appropriate field names, as defined [here](lib/formatters.js).
 
