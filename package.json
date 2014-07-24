@@ -35,8 +35,9 @@
   },
   "homepage": "https://github.com/naturalatlas/geonames-reader",
   "dependencies": {
-    "through2": "^0.5.1",
-    "binary-csv": "^0.2.1"
+    "pull-stream": "^2.24.0",
+    "pull-file": "^0.4.3",
+    "pull-tobits": "^0.2.1"
   },
   "devDependencies": {
     "mocha": "^1.20.1",

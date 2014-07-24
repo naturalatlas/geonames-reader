@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var reader = require('./lib/reader.js');
 var formatters = require('./lib/formatters.js');
+var pullfile = require('pull-file');
 var geonames = module.exports = {};
 
 /**
@@ -50,7 +51,7 @@ geonames.read = function() {
 
 	fs.exists(file, function(exists) {
 		if (!exists) return done('File does not exist');
-		var stream = fs.createReadStream(file);
+		var stream = pullfile(file);
 		var handler = function(item, callback) {
 			item_callback(formatter(item), callback);
 		};
@@ -58,11 +59,6 @@ geonames.read = function() {
 		if (type === 'timezones') {
 			handler = function(item, callback) {
 				if (item[0] === 'CountryCode') return callback();
-				item_callback(formatter(item), callback);
-			};
-		} else if (type === 'countries') {
-			handler = function(item, callback) {
-				if (item[0][0] === '#') return callback();
 				item_callback(formatter(item), callback);
 			};
 		}
